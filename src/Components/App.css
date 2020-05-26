@@ -1,0 +1,24 @@
+.App {
+  height: 100vh;
+  margin: 2rem;
+  width: 76.8rem;
+  background-color: #d8e8ff;
+  border-radius: 6px;
+  box-shadow: 0 1rem 2rem rgba(24,24,64,.2);
+}
+
+.box {
+  margin: 3rem auto;
+  height: 10rem;
+  width: 10rem;
+  background-color: orangered;
+}
+
+@media (max-width: 768px) {
+  .App {
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
