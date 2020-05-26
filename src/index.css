@@ -3,8 +3,19 @@
   box-sizing: border-box;
 }
 
+:root {
+  --color-background-light: #d8e8ff;
+  --color-background-dark: #89a;
+  --color-background-bright: #d0f0d0;
+  --color-text: #fff;
+}
+
 html {
   font-size: 62.5%;
+}
+
+@media (max-width: 600px) {
+  html { font-size: 50%; }
 }
 
 body {

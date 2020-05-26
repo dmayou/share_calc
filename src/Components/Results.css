@@ -1,5 +1,11 @@
 .Results {
+    width: 90%;
     padding: 2rem;
-    background-color: pink;
+    background-color: #eee;
+    font-size: 2rem;
+    color: #333;
     flex: 20%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
 }

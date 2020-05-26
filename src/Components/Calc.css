@@ -1,5 +1,13 @@
 .Calc {
     padding: 2rem;
-    background-color: yellow;
+    background-color: transparent;
     flex: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .Calc { padding: 0; }
 }

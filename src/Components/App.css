@@ -2,7 +2,7 @@
   height: 102.4rem;
   margin: 2rem;
   width: 76.8rem;
-  background-color: #d8e8ff;
+  background-color: var(--color-background-light);
   border-radius: 6px;
   box-shadow: 0 1rem 2rem rgba(24,24,64,.2);
   display: flex;
@@ -11,13 +11,22 @@
   align-items: center;
 }
 
+@media (min-width: 800px) {
+  .App {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+}
+
 .container {
     margin-bottom: 4rem;
-    width: 85%;
+    width: 90%;
     flex: 1 1;
     padding: 2rem;
     border-radius: 5px;
-    box-shadow: 0 1rem 2rem rgba(0,0,0,.2);
 }
 
 .container:first-child {
@@ -37,7 +46,7 @@
 @media (max-width: 600px) {
   .container {
     width: 95%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
   .container:first-child {
     margin-top: 1rem;
