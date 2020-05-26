@@ -27,6 +27,11 @@
     transition: all .15s;
 }
 
+.Key__button span {
+    position: relative;
+    top: -4px;
+}
+
 .Key__button:hover {
     transform: translate(-1px, -1px);
     box-shadow: 0 .3rem .8rem rgba(0,0,0,.5);

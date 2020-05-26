@@ -1,13 +1,14 @@
 import React from 'react';
 import './Key.css';
 
-function Key({ legend, width }) {
+function Key(props) {
+    const { legend, width, handleClick } = props;
     const style = {
         flex: (width * 25) + '%',
     };
     return (
         <div className="Key" style={style}>
-            <button className="Key__button">
+            <button className="Key__button" onClick={handleClick}>
                 {legend}
             </button>
         </div>
