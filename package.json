@@ -19,6 +19,7 @@
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "testServer": "jest --watchman server/Modules/*.test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
