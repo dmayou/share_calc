@@ -2,11 +2,15 @@ const maxLength = 11;
 
 const calculate = (expression) => {
     if (expression === '' || expression === null) {
-        return 'err';
+        return null;
     }
     // parse operator
     const operatorsReg = /[+\u{00f7}\u{00d7}\u{2212}]/u; // + / * -
-    const { 0: operator, index=0 } = expression.match(operatorsReg) || {};
+    const operatorMatch = expression.match(operatorsReg);
+    if (!operatorMatch) {
+        return null; // don't calculate expression without operator
+    }
+    const { 0: operator, index } = operatorMatch;
     // parse operands
     const operand1 = Number(expression.slice(0, index));
     const operand2 = Number(expression.slice(index + 1));

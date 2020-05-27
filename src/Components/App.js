@@ -58,10 +58,12 @@ function App() {
   };
   const handleCalculate = (e) => {
     const result = calculate(expression);
-    const sharedResult = expression + '=' + result;
-    updateExpression(result);
-    // send sharedResult to server
-    socket.emit('new_result', sharedResult);
+    if (result !== null) { // returns null for incomplete expression
+      const sharedResult = expression + '=' + result;
+      updateExpression(result);
+      // send sharedResult to server
+      socket.emit('new_result', sharedResult);
+    }
   };
   const keys = legends.map((legend, i) => {
     return <Key key={i} handleClick={handleClick(legend.oper)} legend={legend.display} />

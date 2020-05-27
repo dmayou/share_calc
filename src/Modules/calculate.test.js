@@ -1,9 +1,10 @@
 import calculate from './calculate';
 
 const tests = [
-    { descr: `return 'err' for null`, input: null, result: 'err' },
-    { descr: `return 'err' for empty`, input: '', result: 'err' },
-    { descr: `handle garbage input`, input: 'gsflkjh;lrtoiu', result: 'err' },
+    { descr: `return null for null`, input: null, result: null },
+    { descr: `return null for empty`, input: '', result: null },
+    { descr: `return null for garbage input`, input: 'gsflkjh;lrtoiu', result: null },
+    { descr: `return null if no operator`, input: '623.6', result: null },
     { descr: `calculate single-digit addition`, input: '2+3', result: '5' },
     { descr: `calculate multi-digit addition`, input: '123+456', result: '579' },
     { descr: `calculate decimal addition`, input: '1.23+4.5', result: '5.73' },
