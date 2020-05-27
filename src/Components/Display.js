@@ -3,7 +3,7 @@ import './Display.css';
 
 function Display({ expression }) {
     const length = expression.length;
-    let fontReduction;
+    let fontReduction = 0;
     if (length > 10) {
         fontReduction = .2;
     }
@@ -16,7 +16,6 @@ function Display({ expression }) {
     const style = {
         fontSize: 1 - fontReduction + 'em',
     };
-    console.log(style);
     return (
         <div className="Display">
             <div className="bezel">

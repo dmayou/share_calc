@@ -20,7 +20,7 @@ io.on('connection', function (socket) {
     console.info('Info: new connection');
     socket.on('new_result', function (result) {
         // minimal validation of input
-        if (result.length < 30 && result.includes('=')) {
+        if (result.length < 40 && result.includes('=')) {
             resultsBuffer.add(result)
             socket.emit('all_results', resultsBuffer.getAll());
         } else {
