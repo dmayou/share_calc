@@ -27,6 +27,9 @@ io.on('connection', function (socket) {
             console.error(`Error: invalid result received: ${result}`);
         }
     });
+    socket.on('get_results', function () {
+        socket.emit('all_results', resultsBuffer.getAll());
+    });
     socket.on('disconnect', function () {
         console.info('Info: disconnection');
     });
