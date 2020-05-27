@@ -4,7 +4,7 @@ import Calc from './Calc';
 import Display from './Display';
 import Key from './Key';
 import Results from './Results';
-import buildExpression from '../Modules/expression';
+import { buildExpression } from '../Modules/expression';
 
 const clear = 'Clear';
 const divisionSymbol = <span>&divide;</span>;
