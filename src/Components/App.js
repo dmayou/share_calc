@@ -42,7 +42,6 @@ function App() {
   const [expression, updateExpression] = useState(initialExpression);
   const [results, updateResults] = useState([]);
   useEffect(() => {
-    // socket=io(uri);
     socket.on('all_results', (results) => updateResults(results));
     socket.on('disconnect', ()=> {
       socket.off('all_results');
@@ -50,6 +49,9 @@ function App() {
     },[]);
     return () => socket = null; // cleanup/destructor
   }, []);
+  useEffect(() => {
+    socket.emit('get_results');
+  },[]);
   const handleClick = (key) => (event) => {
     updateExpression(buildExpression(key, expression));
   };
