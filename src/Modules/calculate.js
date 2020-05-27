@@ -3,7 +3,7 @@ const calculate = (expression) => {
         return 'err';
     }
     // parse operator
-    const operatorsReg = /[+\u{00f7}\u{00d7}\u{2212}]/u; // "+ / * -""
+    const operatorsReg = /[+\u{00f7}\u{00d7}\u{2212}]/u; // + / * -
     const { 0: operator, index=0 } = expression.match(operatorsReg) || {};
     // parse operands
     const operand1 = Number(expression.slice(0, index));
@@ -29,4 +29,4 @@ const calculate = (expression) => {
     return String(result);
 }
 
-module.exports = calculate;
+export default calculate;

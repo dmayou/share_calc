@@ -1,4 +1,4 @@
-const calculate = require ('./calculate');
+import calculate from './calculate';
 
 const tests = [
     { descr: `return 'err' for null`, input: null, result: 'err' },
