@@ -14,6 +14,7 @@ const minusSymbol = <span>&minus;</span>;
 const changeSignSymbol = <span>&plusmn;</span>
 const equalSymbol = <span>=</span>
 const legends = [
+  { display: changeSignSymbol, oper: '\u00b1', },
   { display: divisionSymbol, oper: '\u00f7', },
   { display: '7', oper: '7'},
   { display: '8', oper: '8'},
@@ -37,7 +38,6 @@ function App() {
     updateExpression(buildExpression(key, expression));
   };
   const handleClear = () => updateExpression('');
-  const handleSign = () => console.log('sign!');
   const calculate = () => {
     console.log('calculate!');
   };
@@ -49,7 +49,6 @@ function App() {
       <Calc>
         <Display expression={expression} />
         <Key key="Clear" width={2} handleClick={handleClear} legend={clear} />
-        <Key key="Sign" handleClick={handleSign} legend={changeSignSymbol} />
         {keys}
         <Key key="Equals" width={2} handleClick={calculate} legend={equalSymbol} />
       </Calc>

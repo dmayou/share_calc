@@ -1,6 +1,10 @@
 const buildExpression = (key, expression) => {
-    
-    return expression + key;
+    // do not add a second operator
+    if (containsOperator(expression) && containsOperator(key)) {
+        return expression;
+    } else {
+        return expression + key;
+    }
 }
 
 const containsOperator = (expression) => {

@@ -12,8 +12,11 @@ const operatorTests = [
 ];
 
 const expressionTests = [
-    { descr: `should concatenate inputs`, key: '1', expression: '', result: '1' },
-    // { descr: `should `, key: , expression: , result: '' },
+    // { descr: `should concatenate inputs`, key: '1', expression: '', result: '1' },
+    { descr: `should add digit`, key: '1', expression: '', result: '1' },
+    { descr: `should add operator`, key: '+', expression: '1', result: '1+' },
+    { descr: `should not add second operator`, key: '\u00f7', expression: '1+', result: '1+' },
+// { descr: `should `, key: , expression: , result: '' },
 ];
 
 describe("Operand Checks", () => {
