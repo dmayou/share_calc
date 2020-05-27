@@ -23,7 +23,6 @@ io.on('connection', function (socket) {
         if (result.length < 30 && result.includes('=')) {
             resultsBuffer.add(result)
             socket.emit('all_results', resultsBuffer.getAll());
-            console.log('results buffer:', resultsBuffer.getAll());
         } else {
             console.error(`Error: invalid result received: ${result}`);
         }
@@ -41,5 +40,5 @@ const PORT = process.env.PORT || 5000;
 
 /** Listen * */
 http.listen(PORT, () => {
-    console.log(`Listening on port: ${PORT}`);
+    console.info(`Listening on port: ${PORT}`);
 });
