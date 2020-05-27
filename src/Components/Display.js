@@ -6,7 +6,7 @@ function Display({ expression }) {
         <div className="Display">
             <div className="bezel">
                 <div className="expression">
-                    {expression ? expression : '0'}
+                    {expression}
                 </div>
             </div>
         </div>

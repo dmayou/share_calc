@@ -33,11 +33,11 @@ const legends = [
 ];
 
 function App() {
-  const [expression, updateExpression] = useState('');
+  const [expression, updateExpression] = useState('0');
   const handleClick = (key) => (event) => {
     updateExpression(buildExpression(key, expression));
   };
-  const handleClear = () => updateExpression('');
+  const handleClear = () => updateExpression('0');
   const calculate = () => {
     console.log('calculate!');
   };
