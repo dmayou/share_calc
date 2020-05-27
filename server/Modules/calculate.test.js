@@ -4,7 +4,8 @@ const tests = [
     { descr: `return 'err' for null`, input: null, result: 'err' },
     { descr: `return 'err' for empty`, input: '', result: 'err' },
     { descr: `calculate single-digit addition`, input: '2+3', result: '5' },
-    // { input: , result: '' },
+    { descr: `calculate multi-digit addition`, input: '123+456', result: '579' },
+    // { descr: ``, input: , result: '' },
 ];
 
 describe("Calculation Checks", () => {
