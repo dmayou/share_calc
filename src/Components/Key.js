@@ -8,7 +8,7 @@ function Key(props) {
     };
     return (
         <div className="Key" style={style}>
-            <button className="Key__button" onClick={handleClick}>
+            <button className="Key__button" onClick={handleClick} type="button">
                 {legend}
             </button>
         </div>

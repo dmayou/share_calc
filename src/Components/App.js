@@ -4,6 +4,7 @@ import Calc from './Calc';
 import Display from './Display';
 import Key from './Key';
 import Results from './Results';
+import calculate from '../Modules/calculate';
 import { buildExpression } from '../Modules/expression';
 
 const clear = 'Clear';
@@ -33,13 +34,19 @@ const legends = [
 ];
 
 function App() {
-  const [expression, updateExpression] = useState('0');
+  const initialExpression = '0';
+  const [expression, updateExpression] = useState(initialExpression);
   const handleClick = (key) => (event) => {
     updateExpression(buildExpression(key, expression));
   };
-  const handleClear = () => updateExpression('0');
-  const calculate = () => {
-    console.log('calculate!');
+  const handleClear = () => {
+    updateExpression(initialExpression);
+  };
+  const handleCalculate = (e) => {
+    const result = calculate(expression);
+    const sharedResult = expression + '=' + result;
+    updateExpression(result);
+    // send sharedResult to server
   };
   const keys = legends.map((legend, i) => {
     return <Key key={i} handleClick={handleClick(legend.oper)} legend={legend.display} />
@@ -50,7 +57,7 @@ function App() {
         <Display expression={expression} />
         <Key key="Clear" width={2} handleClick={handleClear} legend={clear} />
         {keys}
-        <Key key="Equals" width={2} handleClick={calculate} legend={equalSymbol} />
+        <Key key="Equals" width={2} handleClick={handleCalculate} legend={equalSymbol} />
       </Calc>
       <Results />
     </div>
