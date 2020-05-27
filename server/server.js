@@ -19,8 +19,13 @@ app.get('/api/ping', function (req, res) {
 io.on('connection', function (socket) {
     console.info('Info: new connection');
     socket.on('new_result', function (result) {
-        resultsBuffer.add(result)
-        socket.emit('all_results', resultsBuffer.get());
+        // minimal validation of input
+        if (result.length < 30 && result.includes('=')) {
+            resultsBuffer.add(result)
+            socket.emit('all_results', resultsBuffer.get());
+        } else {
+            console.error(`Error: invalid result received: ${result}`);
+        }
     });
     socket.on('disconnect', function () {
         console.info('Info: disconnection');
