@@ -19,7 +19,10 @@ const buildExpression = (key, expression) => {
     const isOperator = containsOperator(key);
     const isChangeSign = key === changeSignKey;
     const isRadixPoint = key === '.';
-    if (hasOperator && isOperator) { // do not add a second operator
+    
+    if (exprEmpty && isOperator) {
+        return expression + key;
+    } else if (hasOperator && isOperator) { // do not add a second operator
         return expression;
     } else if (isChangeSign && hasFirstOperand) {
         if (firstNumberNegative) { // remove negative symbol

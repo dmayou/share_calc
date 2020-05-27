@@ -1,3 +1,5 @@
+const maxLength = 11;
+
 const calculate = (expression) => {
     if (expression === '' || expression === null) {
         return 'err';
@@ -26,7 +28,7 @@ const calculate = (expression) => {
         default:
             console.error('Error: Invalid operator', operator);
     }
-    return String(result);
+    return String(result).slice(0, maxLength);
 }
 
 export default calculate;
