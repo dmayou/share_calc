@@ -12,11 +12,13 @@ const buildExpression = (key, expression) => {
     // detect negative numbers
     const firstNumberNegative = expression[0] === '-';
     const secondNumberNegative = hasSecondNumber && expression[operatorIndex + 1] === '-';
+    // detect radix point
+    const firstHasRadixPoint = expression.includes('.');
+    const secondHasRadixPoint = hasSecondOperand && expression.slice(operatorIndex + 1).includes('.');
     // detect special keys
     const isOperator = containsOperator(key);
     const isChangeSign = key === changeSignKey;
     const isRadixPoint = key === '.';
-
     if (hasOperator && isOperator) { // do not add a second operator
         return expression;
     } else if (isChangeSign && hasFirstOperand) {
@@ -37,17 +39,25 @@ const buildExpression = (key, expression) => {
         }
     } else if (!isRadixPoint) {
         // replace '0'
-        if (exprEmpty) {
+        if (exprEmpty && !isRadixPoint) {
             return key;
         } else if (expression === '-0') {
             return '-' + key;
         } else {
             return expression + key;
         }
-    } else if (hasFirstOperand && isRadixPoint) {
-        return expression + '0' + key;
-    } else {
-        return expression + key;
+    } else if (isRadixPoint) {
+        if (exprEmpty) {
+            return expression + key;
+        } else if (hasFirstOperand && hasOperator) {
+            return expression + '0' + key;
+        } else if (hasFirstOperand && firstHasRadixPoint) {
+            return expression;
+        } if (secondHasRadixPoint) {
+            return expression;
+        } else {
+            return expression + key;
+        }
     }
 }
 

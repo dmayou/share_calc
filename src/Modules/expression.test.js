@@ -55,6 +55,12 @@ const expressionTests = [
     { descr: `replace zero placeholder`, key: '6', expression: '0', result: '6' },
     { descr: `remove zero placeholder of negative number`, key: '6', expression: '-0', result: '-6' },
     { descr: `insert zero placeholder after radix point`, key: '.', expression: '7\u00d7', result: '7\u00d70.' },
+    { descr: `add radix point for 'empty' expression`, key: '.', expression: '0', result: '0.' },
+    { descr: `add radix point for first operand`, key: '.', expression: '13', result: '13.' },
+    { descr: `add radix point for second operand`, key: '.', expression: '13+2', result: '13+2.' },
+    { descr: `add radix point for second operand`, key: '.', expression: '45.6+2', result: '45.6+2.' },
+    { descr: `ignore second radix point for first number`, key: '.', expression: '15.4', result: '15.4' },
+    { descr: `ignore second radix point for second number`, key: '.', expression: '15.4+0.4', result: '15.4+0.4' },
 // { descr: ``, key: , expression: , result: '' },
 ];
 
