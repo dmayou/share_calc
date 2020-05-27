@@ -4,6 +4,7 @@ import Calc from './Calc';
 import Display from './Display';
 import Key from './Key';
 import Results from './Results';
+import buildExpression from '../Modules/expression';
 
 const clear = 'Clear';
 const divisionSymbol = <span>&divide;</span>;
@@ -33,7 +34,7 @@ const legends = [
 function App() {
   const [expression, updateExpression] = useState('');
   const handleClick = (key) => (event) => {
-    updateExpression(expression + key);
+    updateExpression(buildExpression(key, expression));
   };
   const handleClear = () => updateExpression('');
   const handleSign = () => console.log('sign!');
