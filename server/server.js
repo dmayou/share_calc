@@ -4,7 +4,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
 const bufferSize = 10;
-const circBuffer = require('./Modules/circBuffer')(bufferSize);
+const circBuffer = require('./Modules/circBuffer');
 const resultsBuffer = new circBuffer(bufferSize);
 
 // Serve static files
@@ -22,7 +22,8 @@ io.on('connection', function (socket) {
         // minimal validation of input
         if (result.length < 30 && result.includes('=')) {
             resultsBuffer.add(result)
-            socket.emit('all_results', resultsBuffer.get());
+            socket.emit('all_results', resultsBuffer.getAll());
+            console.log('results buffer:', resultsBuffer.getAll());
         } else {
             console.error(`Error: invalid result received: ${result}`);
         }

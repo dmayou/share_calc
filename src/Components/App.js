@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Calc from './Calc';
 import Display from './Display';
@@ -6,6 +6,10 @@ import Key from './Key';
 import Results from './Results';
 import calculate from '../Modules/calculate';
 import { buildExpression } from '../Modules/expression';
+
+import io from 'socket.io-client';
+const uri = 'localhost:5000';
+let socket = io(uri);
 
 const clear = 'Clear';
 const divisionSymbol = <span>&divide;</span>;
@@ -36,6 +40,16 @@ const legends = [
 function App() {
   const initialExpression = '0';
   const [expression, updateExpression] = useState(initialExpression);
+  const [results, updateResults] = useState([]);
+  useEffect(() => {
+    // socket=io(uri);
+    socket.on('all_results', (results) => updateResults(results));
+    socket.on('disconnect', ()=> {
+      socket.off('all_results');
+      socket.off('disconnect');
+    },[]);
+    return () => socket = null; // cleanup/destructor
+  }, []);
   const handleClick = (key) => (event) => {
     updateExpression(buildExpression(key, expression));
   };
@@ -47,6 +61,7 @@ function App() {
     const sharedResult = expression + '=' + result;
     updateExpression(result);
     // send sharedResult to server
+    socket.emit('new_result', sharedResult);
   };
   const keys = legends.map((legend, i) => {
     return <Key key={i} handleClick={handleClick(legend.oper)} legend={legend.display} />
@@ -59,7 +74,7 @@ function App() {
         {keys}
         <Key key="Equals" width={2} handleClick={handleCalculate} legend={equalSymbol} />
       </Calc>
-      <Results />
+      <Results results={results}/>
     </div>
   );
 }
