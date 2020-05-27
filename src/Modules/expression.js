@@ -1,41 +1,51 @@
 const changeSignKey = '\u00b1';
 
 const buildExpression = (key, expression) => {
+    // determine state of expression
+    const exprEmpty = expression === '0';
+    const hasFirstOperand = hasOnlyFirstNumber(expression);
+    const hasSecondOperand = hasSecondNumber(expression);
+    const hasOperator = containsOperator(expression);
+    // get index of operator, if available
+    const operatorsReg = /[+\u{00f7}\u{00d7}\u{2212}]/u; // + / * -
+    const { index: operatorIndex } = hasOperator && expression.match(operatorsReg);
+    // detect negative numbers
+    const firstNumberNegative = expression[0] === '-';
+    const secondNumberNegative = hasSecondNumber && expression[operatorIndex + 1] === '-';
+    // detect special keys
     const isOperator = containsOperator(key);
-    // debugger;
-    // do not add a second operator
-    if (containsOperator(expression) && isOperator) {
+    const isChangeSign = key === changeSignKey;
+    const isRadixPoint = key === '.';
+
+    if (hasOperator && isOperator) { // do not add a second operator
         return expression;
-    // change sign key: first operand    
-    } else if (key === changeSignKey && hasOnlyFirstNumber(expression)) {
-        // already negative, remove negative symbol
-        if (expression[0] === '-') {
+    } else if (isChangeSign && hasFirstOperand) {
+        if (firstNumberNegative) { // remove negative symbol
             return expression.slice(1);
-        // not negative, add negative symbol
-        } else {
+        } else { // add negative symbol
             return '-' + expression;
         }
-    } else if (key === changeSignKey && hasSecondNumber(expression)) {
+    } else if (isChangeSign && hasSecondOperand) {
         // change sign of second operand
         //    break expression at operator
-        const operatorsReg = /[+\u{00f7}\u{00d7}\u{2212}]/u; // + / * -
-        const { index: operatorIndex } = expression.match(operatorsReg);
         const expressionBeforeOperator = expression.slice(0, operatorIndex + 1);
         const secondOperand = expression.slice(operatorIndex + 1);
-        if (secondOperand[0] === '-') {
+        if (secondNumberNegative) {
             return expressionBeforeOperator + secondOperand.slice(1);
         } else {
             return expressionBeforeOperator + '-' + secondOperand;
         }
-    } else if (!isOperator && key !== '.') {
+    } else if (!isRadixPoint) {
         // replace '0'
-        if (expression === '0') {
+        if (exprEmpty) {
             return key;
         } else if (expression === '-0') {
             return '-' + key;
         } else {
             return expression + key;
         }
+    } else if (hasFirstOperand && isRadixPoint) {
+        return expression + '0' + key;
     } else {
         return expression + key;
     }

@@ -54,6 +54,7 @@ const expressionTests = [
     { descr: `remove negative sign of number`, key: '\u00b1', expression: '-123', result: '123' },
     { descr: `replace zero placeholder`, key: '6', expression: '0', result: '6' },
     { descr: `remove zero placeholder of negative number`, key: '6', expression: '-0', result: '-6' },
+    { descr: `insert zero placeholder after radix point`, key: '.', expression: '7\u00d7', result: '7\u00d70.' },
 // { descr: ``, key: , expression: , result: '' },
 ];
 
