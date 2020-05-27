@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
 const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+
+const bufferSize = 10;
+const circBuffer = require('./Modules/circBuffer')(bufferSize);
+const resultsBuffer = new circBuffer(bufferSize);
 
 // Serve static files
 app.use(express.static('build'));
@@ -8,6 +13,21 @@ app.use(express.static('build'));
 // Routes
 app.get('/api/ping', function (req, res) {
     res.sendStatus(200);
+});
+
+// Socket io
+io.on('connection', function (socket) {
+    console.info('Info: new connection');
+    socket.on('new_result', function (result) {
+        resultsBuffer.add(result)
+        socket.emit('all_results', resultsBuffer.get());
+    });
+    socket.on('disconnect', function () {
+        console.info('Info: disconnection');
+    });
+    socket.on('error', function (err) {
+        console.error(`Socket Error: ${err}`);
+    });
 });
 
 // App Set //
