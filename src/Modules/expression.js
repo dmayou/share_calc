@@ -32,7 +32,7 @@ const buildExpression = (key, expression) => {
         }
     } else if (isChangeSign && hasSecondOperand) {
         // change sign of second operand
-        //    break expression at operator
+        //    break expression at operator, then reassemble
         const expressionBeforeOperator = expression.slice(0, operatorIndex + 1);
         const secondOperand = expression.slice(operatorIndex + 1);
         if (secondNumberNegative) {

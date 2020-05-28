@@ -18,7 +18,8 @@ const { clear, equalSymbol } = keys;
 function App() {
   const initialExpression = '0';
   const [expression, updateExpression] = useState(initialExpression);
-  const [results, updateResults] = useState([]);
+  const [results, updateResults] = useState(['(No results from server)']);
+  const [resultIsDisplayed, updateResultIsDisplayed] = useState(false);
   
   useEffect(() => {
     socket.on('all_results', (results) => updateResults(results));
@@ -31,7 +32,13 @@ function App() {
   }, []);
   
   const handleClick = (key) => (event) => {
-    updateExpression(buildExpression(key, expression));
+    // if displaying last result and key is radix point or numeral, replace expression with init value
+    if (resultIsDisplayed && ['1','2','3','4','5','6','7','8','9','0','.'].includes(key)) {
+      updateExpression(buildExpression(key, initialExpression));
+    } else {
+      updateExpression(buildExpression(key, expression));
+    }
+    updateResultIsDisplayed(false);
   };
   
   const handleClear = () => {
@@ -43,6 +50,7 @@ function App() {
     if (result !== null) { // returns null for incomplete expression
       const sharedResult = expression + '=' + result;
       updateExpression(result);
+      updateResultIsDisplayed(true);
       // send sharedResult to server
       socket.emit('new_result', sharedResult);
     }
