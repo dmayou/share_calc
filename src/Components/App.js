@@ -11,7 +11,7 @@ import { keys, legends } from '../Modules/key_legends';
 
 import io from 'socket.io-client';
 const uri = '/';
-let socket = io(uri);
+let socket = io(uri, { autoConnect: true, });
 
 const { clear, equalSymbol } = keys;
 
