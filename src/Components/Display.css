@@ -1,6 +1,7 @@
 .Display {
     font-family: 'Courier New', Courier, monospace;
     font-size: 5rem;
+    min-height: 12rem;
     flex: 100%;
     display: flex;
     justify-content: center;
