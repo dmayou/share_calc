@@ -56,7 +56,7 @@ function App() {
     }
   };
   
-  const keys = legends.map((legend, i) => {
+  const keyPad = legends.map((legend, i) => {
     return <Key key={i} handleClick={handleClick(legend.oper)} legend={legend.display} />
   });
   
@@ -65,7 +65,7 @@ function App() {
       <Calc>
         <Display expression={expression} />
         <Key key="Clear" width={2} handleClick={handleClear} legend={clear} />
-        {keys}
+        {keyPad}
         <Key key="Equals" width={2} handleClick={handleCalculate} legend={equalSymbol} />
       </Calc>
       <Results results={results}/>
