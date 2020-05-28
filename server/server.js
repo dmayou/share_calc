@@ -22,7 +22,7 @@ io.on('connection', function (socket) {
         // minimal validation of input
         if (result.length < 40 && result.includes('=')) {
             resultsBuffer.add(result)
-            socket.emit('all_results', resultsBuffer.getAll());
+            io.sockets.emit('all_results', resultsBuffer.getAll());
         } else {
             console.error(`Error: invalid result received: ${result}`);
         }
