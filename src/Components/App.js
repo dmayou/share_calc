@@ -10,7 +10,7 @@ import { buildExpression } from '../Modules/expression';
 import { keys, legends } from '../Modules/key_legends';
 
 import io from 'socket.io-client';
-const uri = 'localhost:5000';
+const uri = '/';
 let socket = io(uri);
 
 const { clear, equalSymbol } = keys;
