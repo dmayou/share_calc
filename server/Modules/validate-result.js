@@ -21,6 +21,7 @@ if (equation === '' // blank is invalid
 // remove legal patterns and characters
 let str = equation
     .replace('NaN', '')
+    .replace('Infinity', '')
     .replace(operatorReg, '')  // operator
     .replace(/[0-9.]/g, '')    // numerals and radix points
     .replace('=', '');         // single '='
