@@ -9,21 +9,20 @@ Some extra features:
 * Input intelligently reuses previous result or starts fresh when the user enters a new number
 * User sees correct operational symbols (e.g., &#0247; rather than / )
 * Rejects second and subsequent operators and radix points
-* Expression display reduces size for large input strings
+* Expression display scales for large input strings
  
 ## Technology used
 The front-end app is built with modern React functional components and hooks. The back end is built with nodeJS and the socket.io library for near-instantaneous updates.
 
-Calculations and expression building are unit-tested using Jest.
+Calculations, expression building, and server validation are unit-tested using Jest.
 
 ## Issues
 In the spirit of a hackathon, the app is intended as a coding sample rather than representing a robust product. Thus, the following issues are outstanding:
 
-* Only Chrome (desktop and android) has been tested
-* Server connection lacks security and could be spammed
-* User could enter numbers larger than MAX_INT or MAX_SAFE_INT
-* Calculation results are truncated to 20 characters for display purposes
-* Server ignored shared results over 40 characters in length
+* Only Chrome 81 (MacOS and android) has been tested
+* Server security allows spamming, but has simple checks that are likely to stop html injection
+* User can enter numbers larger than MAX_INT or MAX_SAFE_INT
+* Calculation results are truncated to 20 characters for display purposes, which might make some displayed results incorrect
 * Overly long inputs will eventually overflow
 * Alternate number formats like 1eNN are not handled by the input algorithms. Similarly, results like NaN or Infinity may be reused as input, causing errors.
 
@@ -31,10 +30,10 @@ In the spirit of a hackathon, the app is intended as a coding sample rather than
 There are numerous intriguing avenues to extend this app:
 * Allow users to clear, delete, edit, or pin results
 * Visually highlight new calculations (React transitions?)
-* Add indication of socket connected or disconnected
+* Add indication of socket connected or disconnected (navigator object?)
 * Haptic feedback on supporting screens
 * Allow multiple operations per input
-* Dynamically check for legal number entry
+* Dynamically check for legal, in-range number entry
 
 ## Dependencies
 

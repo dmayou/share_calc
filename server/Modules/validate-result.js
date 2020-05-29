@@ -14,17 +14,18 @@ const validateResult = equation => {
     if (equation === '' // blank is invalid
         || !equation.includes('=') // must contain =
         || !operatorReg.test(equation) // must have an operator
-        ) {
+       ) {
         return false;
     }
 
     // remove legal patterns and characters
     let str = equation
+        .replace(/[0-9.]/g, '')    // numerals and radix points
         .replace('NaN', '')
         .replace('Infinity', '')
+        .replace('e+', '').replace('e-', '') // exponential notation
         .replace(operatorReg, '')
-        .replace(/[0-9.]/g, '')    // numerals and radix points
-        .replace('=', '');         // single '='
+        .replace('=', '');          // single '='
 
     return str === ''; // valid if nothing left
 };
