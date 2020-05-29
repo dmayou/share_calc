@@ -7,7 +7,7 @@ function Display({ expression }) {
     if (length > 10) {
         fontReduction = .2;
     }
-    if (length > 16) {
+    if (length > 15) {
         fontReduction = .4;
     }
     if (length > 20) {

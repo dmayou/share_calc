@@ -22,7 +22,7 @@ In the spirit of a hackathon, the app is intended as a coding sample rather than
 * Only Chrome (desktop and android) has been tested
 * Server connection lacks security and could be spammed
 * User could enter numbers larger than MAX_INT or MAX_SAFE_INT
-* Calculation results are truncated to 10 characters for display purposes
+* Calculation results are truncated to 20 characters for display purposes
 * Server ignored shared results over 40 characters in length
 * Overly long inputs will eventually overflow
 * Alternate number formats like 1eNN are not handled by the input algorithms. Similarly, results like NaN or Infinity may be reused as input, causing errors.
