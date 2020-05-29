@@ -3,7 +3,7 @@ const validateResult = equation => {
 // <operand><operator><operand>=<result>
 // general strategy:
 //   - make general checks (length, presence of operator, equals)
-//   - remove all valid characters and patterns and see if 
+//   - remove all valid characters and patterns, then see if 
 //     anything is left
 
 // will still allow wrong things through, but seriously 
@@ -22,7 +22,7 @@ if (equation === '' // blank is invalid
 let str = equation
     .replace('NaN', '')
     .replace('Infinity', '')
-    .replace(operatorReg, '')  // operator
+    .replace(operatorReg, '')
     .replace(/[0-9.]/g, '')    // numerals and radix points
     .replace('=', '');         // single '='
 
