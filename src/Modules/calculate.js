@@ -1,4 +1,4 @@
-const maxLength = 11;
+const maxLength = 20;
 
 const calculate = (expression) => {
     if (expression === '' || expression === null) {
