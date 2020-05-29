@@ -19,6 +19,7 @@ Calculations and expression building are unit-tested using Jest.
 ## Issues
 In the spirit of a hackathon, the app is intended as a coding sample rather than representing a robust product. Thus, the following issues are outstanding:
 
+* Only Chrome (desktop and android) has been tested
 * Server connection lacks security and could be spammed
 * User could enter numbers larger than MAX_INT or MAX_SAFE_INT
 * Calculation results are truncated to 10 characters for display purposes
