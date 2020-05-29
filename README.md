@@ -9,12 +9,12 @@ Some extra features:
 * Input intelligently reuses previous result or starts fresh when the user enters a new number
 * User sees correct operational symbols (e.g., &#0247; rather than / )
 * Rejects second and subsequent operators and radix points
-* Expression display scales for large input strings
+* Expression display scales for long inputs
  
-## Technology used
-The front-end app is built with modern React functional components and hooks. The back end is built with nodeJS and the socket.io library for near-instantaneous updates.
+## Technologies
+The front-end app is built with modern React functional components and hooks. The back end is built with nodeJS, express, and the socket.io library for near-instantaneous updates.
 
-Calculations, expression building, and server validation are unit-tested using Jest.
+Calculations, expression building, and server input validation are unit-tested using Jest.
 
 ## Issues
 In the spirit of a hackathon, the app is intended as a coding sample rather than representing a robust product. Thus, the following issues are outstanding:
@@ -24,7 +24,7 @@ In the spirit of a hackathon, the app is intended as a coding sample rather than
 * User can enter numbers larger than MAX_INT or MAX_SAFE_INT
 * Calculation results are truncated to 20 characters for display purposes, which might make some displayed results incorrect
 * Overly long inputs will eventually overflow
-* Alternate number formats like 1eNN are not handled by the input algorithms. Similarly, results like NaN or Infinity may be reused as input, causing errors.
+* Alternate number formats like 1e&#0177;NN are not handled by the input algorithms. Similarly, results like NaN or Infinity may be reused as input, leading to meaningless results.
 
 ## Future
 There are numerous intriguing avenues to extend this app:
