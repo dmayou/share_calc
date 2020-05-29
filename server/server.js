@@ -3,6 +3,8 @@ const app = express();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 
+const validateResult = require('./Modules/validate-result')
+
 const bufferSize = 10;
 const circBuffer = require('./Modules/circBuffer');
 const resultsBuffer = new circBuffer(bufferSize);
@@ -20,7 +22,7 @@ io.on('connection', function (socket) {
     console.info('Info: new connection');
     socket.on('new_result', function (result) {
         // minimal validation of input
-        if (result.length < 40 && result.includes('=')) {
+        if (validateResult(result)) {
             resultsBuffer.add(result)
             io.sockets.emit('all_results', resultsBuffer.getAll());
         } else {
