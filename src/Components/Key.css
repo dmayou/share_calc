@@ -22,16 +22,12 @@
     font-size: 6rem;
     font-weight: 100;
     line-height: 1;
+    overflow: hidden;
     text-transform: uppercase;
     background-color: var(--color-background-dark);
     box-shadow: 0 .2rem .6rem rgba(0,0,0,.2);
     color: var(--color-text);
     transition: all .15s;
-}
-
-.Key__button span {
-    position: relative;
-    top: -4px;
 }
 
 .Key__button:hover {
