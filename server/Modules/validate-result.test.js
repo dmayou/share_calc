@@ -16,6 +16,8 @@ const resultsTests = [
     { descr: `accept Infinity`, input: '1\u{00f7}0=Infinity', result: true },
     { descr: `accept exponential notation`, input: '9999999999\u{00d7}99999999999=9.9999999998e+21', result: true },
     { descr: `accept exponential notation`, input: '1\u{00f7}99999999999999999999=1e-20', result: true },
+    { descr: `accept negative values`, input: '-5+2=3', result: true },
+
     // { descr: ``, input: '', result: true },
 ];
 

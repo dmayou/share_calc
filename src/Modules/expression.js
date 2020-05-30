@@ -44,7 +44,7 @@ const buildExpression = (key, expression) => {
         // replace '0'
         if (exprEmpty && !isRadixPoint) {
             return key;
-        } else if (expression === '-0') {
+        } else if (expression === '-0' && !isOperator) {
             return '-' + key;
         } else {
             return expression + key;
