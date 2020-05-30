@@ -46,6 +46,6 @@
 }
 
 .Key__button:active {
-    transform: translate(1px, 1px);
+    transform: scale(.98) translate(1px, 1px);
     filter: brightness(110%);
 }
