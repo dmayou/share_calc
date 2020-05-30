@@ -20,10 +20,10 @@ const validateResult = equation => {
 
     // remove legal patterns and characters
     let str = equation
-        .replace(/[0-9.]/g, '')    // numerals and radix points
+        .replace('e+', '').replace('e-', '') // exponential notation
+        .replace(/[0-9.-]/g, '')    // numerals, radix points, negative
         .replace('NaN', '')
         .replace('Infinity', '')
-        .replace('e+', '').replace('e-', '') // exponential notation
         .replace(operatorReg, '')
         .replace('=', '');          // single '='
 
