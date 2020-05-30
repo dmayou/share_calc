@@ -1,0 +1,9 @@
+.info {
+    position: absolute;
+    bottom: 1rem;
+    right: 1.3rem;
+}
+
+.info__img {
+    filter: contrast(30%);
+}

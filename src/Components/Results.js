@@ -1,5 +1,7 @@
 import React from 'react';
 import './Results.css';
+import './InfoLink';
+import InfoLink from './InfoLink';
 
 function Results({ results }) {
     const resultsDisplay = results.map( (result, i) => {
@@ -18,6 +20,7 @@ function Results({ results }) {
                     {resultsDisplay || ''}
                 </tbody>
             </table>
+            <InfoLink />
         </div>
     );
 }
